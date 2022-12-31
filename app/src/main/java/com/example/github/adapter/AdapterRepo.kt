@@ -26,6 +26,7 @@ class AdapterRepo(private val context:Context,private val list:ArrayList<Item>):
              val intent=Intent(context, DetailsActivity::class.java)
              intent.putExtra("REPO",list[position])
              startActivity(context,intent,null)
+
          }
     }
 

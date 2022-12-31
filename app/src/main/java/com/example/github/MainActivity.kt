@@ -1,7 +1,9 @@
 package com.example.github
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.github.adapter.AdapterRepo
@@ -13,24 +15,26 @@ class MainActivity : AppCompatActivity() {
     private lateinit var vm: GithubViewModel
     private lateinit var adapter: AdapterRepo
     private lateinit var list:ArrayList<Item>
+
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        vm=ViewModelProvider(this)[GithubViewModel::class.java]
-        vm.Everything()
         list=ArrayList()
         adapter= AdapterRepo(this,list)
-        rcview.layoutManager=LinearLayoutManager(this)
-        rcview.adapter=adapter
+        vm=ViewModelProvider(this)[GithubViewModel::class.java]
+        vm.Everything()
+
         vm.list.observe(this) {
             if (it.isSuccessful) {
-                it.body()!!.items.forEach { itr->
-                     list.add(itr)
-                }
-
+                list.addAll(it.body()!!.items)
+                adapter.notifyDataSetChanged()
             }
 
         }
+
+        rcview.layoutManager=LinearLayoutManager(this)
+        rcview.adapter=adapter
 
 
     }
