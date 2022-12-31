@@ -1,14 +1,15 @@
-package com.example.github
+package com.example.github.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.github.DetailsActivity
+import com.example.github.R
 import com.example.github.data.Item
 import kotlinx.android.synthetic.main.list_item.view.*
 
@@ -22,7 +23,7 @@ class AdapterRepo(private val context:Context,private val list:ArrayList<Item>):
          holder.bind(list[position])
          holder.itemView.setOnClickListener {
              Toast.makeText(context, list[position].name,Toast.LENGTH_LONG).show()
-             val intent=Intent(context,DetailsActivity::class.java)
+             val intent=Intent(context, DetailsActivity::class.java)
              intent.putExtra("REPO",list[position])
              startActivity(context,intent,null)
          }

@@ -2,15 +2,16 @@ package com.example.github
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.github.adapter.AdapterRepo
 import com.example.github.data.Item
+import com.example.github.viewmodel.GithubViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var vm:GithubViewModel
-    private lateinit var adapter:AdapterRepo
+    private lateinit var vm: GithubViewModel
+    private lateinit var adapter: AdapterRepo
     private lateinit var list:ArrayList<Item>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

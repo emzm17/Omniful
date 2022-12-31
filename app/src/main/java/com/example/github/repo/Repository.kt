@@ -1,4 +1,4 @@
-package com.example.github
+package com.example.github.repo
 
 import com.example.github.api.RetrofitHelper
 
